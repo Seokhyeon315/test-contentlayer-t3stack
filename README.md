@@ -1,28 +1,42 @@
-# Create T3 App
+# T3 Stack with Contentlayer
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## Step 1
 
-## What's next? How do I make an app with this?
+```bash
+npm create t3-app@latest
+```
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Including:
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
-- [Next.js](https://nextjs.org)
+- [Next.js](https://nextjs.org) with pages directory
 - [NextAuth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
 
-## Learn More
+Run following commands:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+1. `npx prisma db push`
+2. `npm run dev`
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+After commit and push to github repo, install following packages:
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+```bash
+npm install contentlayer next-contentlayer rehype-autolink-headings rehype-slug rehype-pretty-code shiki concurrently remark-gfm
+```
 
-## How do I deploy this?
+## Step2
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+1. Edit tsconfig.json
+2. Edit next.config.js
+3. Edit package.json's scripts to following:
+
+```json
+"dev": "concurrently \"contentlayer dev\" \"next dev\"",
+"build": "contentlayer build && next build",
+```
+
+4. Create contentlayer.config.js and edit it. I refer this repository: https://github.com/shadcn/taxonomy/tree/main
+5. Create a sample1.mdx file in src/content/notes directory. The sample file includes English and Korean language.
+6. Run `npm run dev`
+7. Here is where problem occurs. After I run `npm run dev`, the terminal got fronzen. I didn't include `.contentlayer` directory to show it only creates caches.
