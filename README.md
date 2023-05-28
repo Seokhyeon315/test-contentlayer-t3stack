@@ -40,3 +40,7 @@ npm install contentlayer next-contentlayer rehype-autolink-headings rehype-slug 
 5. Create a sample1.mdx file in src/content/notes directory. The sample file includes English and Korean language.
 6. Run `npm run dev`
 7. Here is where problem occurs. After I run `npm run dev`, the terminal got fronzen. I didn't include `.contentlayer` directory inside of `.gitignore` to show it only creates caches.
+
+## Error fix process
+
+1. Remove concurrently and contentlayer command from `package.json`'s scripts.
